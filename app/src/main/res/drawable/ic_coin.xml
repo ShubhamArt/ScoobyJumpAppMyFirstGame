@@ -1,0 +1,11 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <!-- Outer darker gold ring -->
+    <path android:fillColor="#CC9900" android:pathData="M12,2A10,10 0,1 1,2 12A10,10 0,0 1,12 2Z"/>
+    <!-- Inner bright gold ring (3D depth) -->
+    <path android:fillColor="#FFBF00" android:pathData="M12,4A8,8 0,1 1,4 12A8,8 0,0 1,12 4Z"/>
+    <!-- Center highlight -->
+    <path android:fillColor="#FFE580" android:pathData="M12,6A6,6 0,1 1,6 12A6,6 0,0 1,12 6Z"/>
+    <!-- Dollar sign inner engraving -->
+    <path android:fillColor="#CC9900" android:pathData="M12,8.5C10.5,8.5 9.5,9.5 9.5,10.7C9.5,12.2 11.5,12.7 12.5,13.2C13.5,13.7 14,14 14,14.7C14,16 13,16.5 12,16.5C10.5,16.5 9.5,15.5 9.5,14.5 L8,15 C8.5,16.5 10,18 12,18 C14,18 15.5,17 15.5,14.7 C15.5,13 13.5,12.5 12.5,12 C11.5,11.5 11,11.2 11,10.7 C11,9.7 12,9.5 12.5,9.5 C13.5,9.5 14,10 14.5,11 L16,10.5 C15.5,9 14,8.5 12,8.5Z"/>
+</vector>

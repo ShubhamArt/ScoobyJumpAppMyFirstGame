@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer slight glow/shadow for depth -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#2039FF14" />
+            <corners android:radius="32dp" />
+            <padding android:left="4dp" android:top="4dp" android:right="4dp" android:bottom="4dp" />
+        </shape>
+    </item>
+    
+    <!-- Base solid Neon Mint color -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#39FF14" />
+            <corners android:radius="28dp" />
+            <stroke android:width="2dp" android:color="#55FFFFFF" />
+        </shape>
+    </item>
+    
+    <!-- Subtle inner highlight gradient -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#60FFFFFF"
+                android:centerColor="#00FFFFFF"
+                android:endColor="#20000000"
+                android:angle="270" />
+            <corners android:radius="28dp" />
+        </shape>
+    </item>
+</layer-list>

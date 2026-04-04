@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:cardBackgroundColor="#1E2A38"
+    app:strokeColor="#4A6A8A"
+    app:strokeWidth="2dp"
+    android:layout_marginHorizontal="12dp"
+    android:layout_marginVertical="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="140dp"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/missionTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="The Ghostly Leap"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/missionDesc"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Jump over 15 enemies"
+            android:textColor="#A0B0D0"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/missionTitle" />
+
+        <LinearLayout
+            android:id="@+id/progressContainer"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/missionDesc">
+
+            <ProgressBar
+                android:id="@+id/missionProgress"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="8dp"
+                android:progressTint="#00E5FF"
+                android:progressBackgroundTint="#3300E5FF"
+                android:max="100"
+                android:progress="65" />
+
+            <TextView
+                android:id="@+id/missionProgressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[ ||||||---- ]  65/100"
+                android:textColor="#FFFFFF"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp" />
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:id="@+id/solvedStampContainer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="-15"
+            android:visibility="gone"
+            android:alpha="0.3"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SOLVED"
+                android:textColor="#FF3B30"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-condensed"
+                android:letterSpacing="0.1"
+                android:paddingHorizontal="16dp"
+                android:paddingVertical="4dp" />
+            
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_red_stamp_border" />
+        </FrameLayout>
+
+        <!-- "LOCKED" OVERLAY -->
+        <FrameLayout
+            android:id="@+id/lockedStampContainer"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#D90B101A"
+            android:elevation="4dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔒 LOCKED"
+                    android:textColor="#AAFFFFFF"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="Complete previous mission to unlock"
+                    android:textColor="#77FFFFFF"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </FrameLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

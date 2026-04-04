@@ -1,0 +1,430 @@
+[
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_sound_off.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_sound_off.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_restart.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_restart.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-xxxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_mission_panel.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_mission_panel.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_hero_unlocked.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_hero_unlocked.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_circle_gold.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_circle_gold.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_glass_pill.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_glass_pill.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_red_stamp_border.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_red_stamp_border.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_circle_magenta.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_circle_magenta.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_green_retry_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_green_retry_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_dialog_missions.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/dialog_missions.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_gray_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_gray_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_action_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_action_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_scooby_logo.png.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_scooby_logo.png"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_speaker_muted_neon.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_speaker_muted_neon.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-hdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-hdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_dialog_reward_roulette.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/dialog_reward_roulette.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_glass_circle_border.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_glass_circle_border.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_dialog.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_dialog.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-xhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-mdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_cyan_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_cyan_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_sound_on.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_sound_on.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_activity_main.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-xhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_purple_revive_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_purple_revive_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_circle_cyan.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_circle_cyan.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/raw_jump.wav.flat",
+        "source": "com.game.scoobyjump.app-main-42:/raw/jump.wav"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_dark_blue_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_dark_blue_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_speaker_neon.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_speaker_neon.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-xxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_hero_nav_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_hero_nav_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/raw_gameover_loop.wav.flat",
+        "source": "com.game.scoobyjump.app-main-42:/raw/gameover_loop.wav"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-mdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xxxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-xxxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_halo_glow.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_halo_glow.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-xxhdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/raw_shop_open.wav.flat",
+        "source": "com.game.scoobyjump.app-main-42:/raw/shop_open.wav"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_dialog_review.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/dialog_review.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_dialog_confirm_exit.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/dialog_confirm_exit.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/raw_gameover_fail.wav.flat",
+        "source": "com.game.scoobyjump.app-main-42:/raw/gameover_fail.wav"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_start_button_3d.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_start_button_3d.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-xxxhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_progress_bar.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_progress_bar.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_player_preview.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_player_preview.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_glass_dock.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_glass_dock.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_mission_clipboard.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_mission_clipboard.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_hanger.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_hanger.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-hdpi/ic_launcher_round.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_sky_gradient.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_sky_gradient.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-hdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_video_play.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_video_play.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_yellow_gradient_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_yellow_gradient_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/raw_coin.wav.flat",
+        "source": "com.game.scoobyjump.app-main-42:/raw/coin.wav"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_dialog_leaderboard.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/dialog_leaderboard.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_glass_icon.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_glass_icon.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_hero_locked.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_hero_locked.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xxhdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-xxhdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_instruction_box.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_instruction_box.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/raw_gameover.wav.flat",
+        "source": "com.game.scoobyjump.app-main-42:/raw/gameover.wav"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_adaptive_background.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_adaptive_background.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_btn_neumorphic.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_btn_neumorphic.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-mdpi_ic_launcher_foreground.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-mdpi/ic_launcher_foreground.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_circular_progress.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_circular_progress.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_neumorphism_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_neumorphism_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_folder.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_folder.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_dialog_hero_shop.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/dialog_hero_shop.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_home.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_glassmorphic_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_glassmorphic_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_trophy_neon.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_trophy_neon.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_start_game_green.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_start_game_green.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_share.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_share.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/raw_bgm.wav.flat",
+        "source": "com.game.scoobyjump.app-main-42:/raw/bgm.wav"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_cyan_border_panel.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_cyan_border_panel.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_red_button.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_red_button.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_start_button.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_start_button.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_coin.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_coin.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_exit_btn.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_exit_btn.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_item_hero.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/item_hero.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_platform_shape.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/platform_shape.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_start_button_pill.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_start_button_pill.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_mission_tile.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_mission_tile.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_dialog_game_over.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/dialog_game_over.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_coin_capsule.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_coin_capsule.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_buy_btn_gold.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_buy_btn_gold.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_coin_capsule_navy.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_coin_capsule_navy.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_hero_equipped.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_hero_equipped.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-xhdpi/ic_launcher.webp"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_shop_panel.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_shop_panel.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_dialog_revive.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/dialog_revive.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_hero_equipped_neon.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_hero_equipped_neon.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_crown.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_crown.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_round_blue.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_round_blue.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_item_mission.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/item_mission.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_score_star.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_score_star.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_item_leaderboard.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/item_leaderboard.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_scoobyjump.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/scoobyjump.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_hero_mask.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_hero_mask.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_popup_dialog.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_popup_dialog.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_adaptive_foreground.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_adaptive_foreground.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_ic_trophy.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/ic_trophy.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/raw_ambient_sparkle.wav.flat",
+        "source": "com.game.scoobyjump.app-main-42:/raw/ambient_sparkle.wav"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_bg_game_over_panel.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/drawable/bg_game_over_panel.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/layout_dialog_pause.xml.flat",
+        "source": "com.game.scoobyjump.app-main-42:/layout/dialog_pause.xml"
+    }
+]

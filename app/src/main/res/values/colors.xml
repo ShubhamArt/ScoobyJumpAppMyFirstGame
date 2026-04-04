@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mystery_purple">#311B92</color>
+    <color name="title_teal">#00BFA5</color>
+    <color name="neon_green">#00E676</color>
+    <color name="dark_neon_green">#00C853</color>
+    <color name="ui_yellow">#FFD600</color>
+    <color name="scooby_brown">#8D6E63</color>
+    <color name="shaggy_green">#AEEA00</color>
+</resources>

@@ -1,0 +1,142 @@
+[
+  {
+    "mission_id": "M001",
+    "title": "Pocket Change",
+    "description": "Collect a total of 100 coins across all your runs.",
+    "target_value": 100,
+    "reward_coins": 50
+  },
+  {
+    "mission_id": "M002",
+    "title": "Casual Climber",
+    "description": "Accumulate a total of 2,500 meters climbed.",
+    "target_value": 2500,
+    "reward_coins": 50
+  },
+  {
+    "mission_id": "M003",
+    "title": "Frequent Flyer",
+    "description": "Land safely on 500 platforms cumulatively.",
+    "target_value": 500,
+    "reward_coins": 50
+  },
+  {
+    "mission_id": "M004",
+    "title": "Marathon Survivor",
+    "description": "Survive for a total of 300 seconds across all games.",
+    "target_value": 300,
+    "reward_coins": 50
+  },
+  {
+    "mission_id": "M005",
+    "title": "Morning Routine",
+    "description": "Play 3 games before 10:00 AM.",
+    "target_value": 3,
+    "reward_coins": 50
+  },
+  {
+    "mission_id": "M006",
+    "title": "Combo King",
+    "description": "Jump on 5 platforms in a row without falling back down or stopping.",
+    "target_value": 5,
+    "reward_coins": 150
+  },
+  {
+    "mission_id": "M007",
+    "title": "Perfect Landing",
+    "description": "Land exactly in the center of a platform 10 times in one game.",
+    "target_value": 10,
+    "reward_coins": 200
+  },
+  {
+    "mission_id": "M008",
+    "title": "Gravity Explorer",
+    "description": "Activate the Super Jump or Jetpack power-up 5 times.",
+    "target_value": 5,
+    "reward_coins": 150
+  },
+  {
+    "mission_id": "M009",
+    "title": "Coin Magnetism",
+    "description": "Collect 10 coins in a single non-stop jump.",
+    "target_value": 10,
+    "reward_coins": 250
+  },
+  {
+    "mission_id": "M010",
+    "title": "Acrobat",
+    "description": "Trigger 5 'Near Misses' across any number of games.",
+    "target_value": 5,
+    "reward_coins": 120
+  },
+  {
+    "mission_id": "M011",
+    "title": "True Pacifist",
+    "description": "Reach 1,500 meters without collecting a single coin.",
+    "target_value": 1500,
+    "reward_coins": 400
+  },
+  {
+    "mission_id": "M012",
+    "title": "Blind Jumper",
+    "description": "Reach a score of 1,000 without picking up any power-ups.",
+    "target_value": 1000,
+    "reward_coins": 450
+  },
+  {
+    "mission_id": "M013",
+    "title": "Speed Runner",
+    "description": "Climb past 1,000 meters in under 20 seconds.",
+    "target_value": 1,
+    "reward_coins": 500
+  },
+  {
+    "mission_id": "M014",
+    "title": "Thread the Needle",
+    "description": "Free-fall past 3 platforms in one drop and land safely on a 4th.",
+    "target_value": 1,
+    "reward_coins": 600
+  },
+  {
+    "mission_id": "M015",
+    "title": "Living on the Edge",
+    "description": "Land on the extreme edge of platforms 5 times in a single run.",
+    "target_value": 5,
+    "reward_coins": 450
+  },
+  {
+    "mission_id": "M016",
+    "title": "Gravity Defier",
+    "description": "Use 3 distinct power-ups in a single, high-stakes run.",
+    "target_value": 3,
+    "reward_coins": 500
+  },
+  {
+    "mission_id": "M017",
+    "title": "Heart Attack",
+    "description": "Successfully survive 10 'Near Misses' in a single life.",
+    "target_value": 10,
+    "reward_coins": 800
+  },
+  {
+    "mission_id": "M018",
+    "title": "Untouchable",
+    "description": "Survive for 60 seconds without collecting a coin, power-up, or taking a hit.",
+    "target_value": 60,
+    "reward_coins": 750
+  },
+  {
+    "mission_id": "M019",
+    "title": "Leap of Faith",
+    "description": "Perform a flawless blind drop of at least 800 meters and land precisely on the center of a platform.",
+    "target_value": 1,
+    "reward_coins": 1000
+  },
+  {
+    "mission_id": "M020",
+    "title": "The Floor Is Lava",
+    "description": "Spend less than 0.5 seconds on each platform while climbing up to 2,000 meters.",
+    "target_value": 2000,
+    "reward_coins": 1200
+  }
+]
