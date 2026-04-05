@@ -50,38 +50,44 @@ class MissionManager(private val saveManager: SaveManager, private val currencyM
 
     private val ALL_MISSIONS = listOf(
         // Easy
-        Mission(0, MissionType.Height, "Level 1: Reach Altitude", "Reach 100m altitude", 100, 50),
-        Mission(1, MissionType.Collect, "Level 2: Collect Coins", "Collect 10 coins", 10, 50),
-        Mission(2, MissionType.Survive, "Level 3: Survive Time", "Survive for 10 seconds", 10, 50),
-        Mission(3, MissionType.ComboKing, "Level 4: Jump Streak", "Jump 5 times in a row", 1, 50),
-        Mission(4, MissionType.Collect, "Level 5: Collect 30 Coins", "Collect 30 coins", 30, 100),
-        Mission(5, MissionType.Height, "Level 6: Reach 200m", "Reach 200m altitude", 200, 100),
-        Mission(6, MissionType.PerfectLanding, "Level 7: Perfect Drop", "Get 1 Perfect Landing", 1, 50),
-        Mission(7, MissionType.Magnetic, "Level 8: Find Magnet", "Collect 1 Magnet", 1, 50),
-        Mission(8, MissionType.EdgeLanding, "Level 9: Living on Edge", "Get 1 Edge Landing", 1, 50),
-        Mission(9, MissionType.Pacifist, "Level 10: Poverty Run", "Score 1000m with 0 coins", 1, 100),
+        Mission(0, MissionType.Height, "Reach 100m altitude", "Reach 100m altitude", 100, 50),
+        Mission(1, MissionType.Collect, "Collect 10 Coins", "Collect 10 coins", 10, 50),
+        Mission(2, MissionType.Survive, "Survive for 10 seconds", "Survive for 10 seconds", 10, 50),
+        Mission(3, MissionType.ComboKing, "Jump 5 times in a row", "Jump 5 times in a row", 1, 50),
+        Mission(4, MissionType.Collect, "Collect 30 Coins", "Collect 30 coins", 30, 100),
+        Mission(5, MissionType.Height, "Reach 200m altitude", "Reach 200m altitude", 200, 100),
+        Mission(6, MissionType.PerfectLanding, "Execute a Perfect Landing", "Get 1 Perfect Landing", 1, 50),
+        Mission(7, MissionType.Magnetic, "Collect a Magnet", "Collect 1 Magnet", 1, 50),
+        Mission(8, MissionType.EdgeLanding, "Execute an Edge Landing", "Get 1 Edge Landing", 1, 50),
+        Mission(9, MissionType.Pacifist, "Score 1000m with 0 coins", "Score 1000m with 0 coins", 1, 100),
         // Medium
-        Mission(10, MissionType.Height, "Level 11: Reach 800m", "Reach 800m altitude", 800, 300),
-        Mission(11, MissionType.GravityDefier, "Level 12: Power Up", "Collect 3 Power-ups", 1, 300),
-        Mission(12, MissionType.Survive, "Level 13: Survive 40s", "Survive for 40 seconds", 40, 300),
-        Mission(13, MissionType.Collect, "Level 14: Collect 50 Coins", "Collect 50 coins", 50, 250),
-        Mission(14, MissionType.NearMiss, "Level 15: Close Call", "Dodge super close to 1 enemy", 1, 200),
-        Mission(15, MissionType.ComboKing, "Level 16: Jump Master", "Jump 5 times in a row 3 times", 3, 300),
-        Mission(16, MissionType.PerfectLanding, "Level 17: Perfect Flow", "Get 3 Perfect Landings", 3, 300),
-        Mission(17, MissionType.SpeedRunner, "Level 18: Speed Run", "Reach 1000m in 25s", 1, 300),
-        Mission(18, MissionType.Height, "Level 19: Reach 1200m", "Reach 1200m altitude", 1200, 400),
-        Mission(19, MissionType.BluePlatformRun, "Level 20: Blue Run", "Reach 1500m on blue platforms", 1, 500),
+        Mission(10, MissionType.Height, "Reach 800m altitude", "Reach 800m altitude", 800, 300),
+        Mission(11, MissionType.GravityDefier, "Collect 3 Power-ups", "Collect 3 Power-ups", 1, 300),
+        Mission(12, MissionType.Survive, "Survive for 40 seconds", "Survive for 40 seconds", 40, 300),
+        Mission(13, MissionType.Collect, "Collect 50 Coins", "Collect 50 coins", 50, 250),
+        Mission(14, MissionType.NearMiss, "Dodge closely to 1 enemy", "Dodge super close to 1 enemy", 1, 200),
+        Mission(15, MissionType.ComboKing, "Jump 5 times in a row 3 times", "Jump 5 times in a row 3 times", 3, 300),
+        Mission(16, MissionType.PerfectLanding, "Get 3 Perfect Landings", "Get 3 Perfect Landings", 3, 300),
+        Mission(17, MissionType.SpeedRunner, "Reach 1000m in 25s", "Reach 1000m in 25s", 1, 300),
+        Mission(18, MissionType.Height, "Reach 1200m altitude", "Reach 1200m altitude", 1200, 400),
+        Mission(19, MissionType.BluePlatformRun, "Reach 1500m on blue platforms", "Reach 1500m on blue platforms", 1, 500),
         // Hard
-        Mission(20, MissionType.BlindJumper, "Level 21: No Powerups", "Reach 500m safely with no powerups", 1, 800),
-        Mission(21, MissionType.HeartAttack, "Level 22: Matrix Dodge", "Dodge super close to 3 enemies", 1, 1000),
-        Mission(22, MissionType.PerfectLanding, "Level 23: Perfect Legend", "Get 5 Perfect Landings", 5, 800),
-        Mission(23, MissionType.NoJetpack, "Level 24: Manual Climb", "Reach 2000m without any Jetpack", 1, 1000),
-        Mission(24, MissionType.NearMissTimed, "Level 25: Fast Reflex", "3 Close calls in under 10 seconds", 1, 1500),
-        Mission(25, MissionType.ThreadNeedle, "Level 26: Thread Needle", "Jump directly between 2 enemies", 1, 800),
-        Mission(26, MissionType.CoinMagnet, "Level 27: Collect 120 Coins", "Collect 120 coins in one jump", 1, 800),
-        Mission(27, MissionType.Height, "Level 28: Reach 5000m", "Reach 5000m altitude", 5000, 2000, unlocksSkin = 11),
-        Mission(28, MissionType.BluePlatformRun, "Level 29: Blue Legend", "Reach 2000m on blue platforms", 1, 1500),
-        Mission(29, MissionType.Survive, "Level 30: Marathon", "Survive for 100 seconds", 100, 2000)
+        Mission(20, MissionType.BlindJumper, "Reach 500m safely with no powerups", "Reach 500m safely with no powerups", 1, 800),
+        Mission(21, MissionType.HeartAttack, "Matrix Dodge 3 enemies", "Dodge super close to 3 enemies", 1, 1000),
+        Mission(22, MissionType.PerfectLanding, "Get 5 Perfect Landings", "Get 5 Perfect Landings", 5, 800),
+        Mission(23, MissionType.NoJetpack, "Reach 2000m manual climb", "Reach 2000m without any Jetpack", 1, 1000),
+        Mission(24, MissionType.NearMissTimed, "3 Close calls in under 10 seconds", "3 Close calls in under 10 seconds", 1, 1500),
+        Mission(25, MissionType.ThreadNeedle, "Jump directly between 2 enemies", "Jump directly between 2 enemies", 1, 800),
+        Mission(26, MissionType.CoinMagnet, "Collect 120 coins in one jump", "Collect 120 coins in one jump", 1, 800),
+        Mission(27, MissionType.Height, "Reach 5000m altitude", "Reach 5000m altitude", 5000, 2000, unlocksSkin = 11),
+        Mission(28, MissionType.BluePlatformRun, "Reach 2000m on blue platforms", "Reach 2000m on blue platforms", 1, 1500),
+        Mission(29, MissionType.Survive, "Survive for 100 seconds", "Survive for 100 seconds", 100, 2000),
+        // Expert
+        Mission(30, MissionType.Pacifist, "The Ascetic", "Score 3,000m collecting exactly 0 coins.", 1, 3000),
+        Mission(31, MissionType.HeartAttack, "Ghost Whisperer", "Dodge super close to 10 enemies in one life", 10, 4000),
+        Mission(32, MissionType.SpeedRunner, "Speed Demon", "Reach 3,000m in under 45 seconds", 1, 5000),
+        Mission(33, MissionType.NoJetpack, "Raw Muscle", "Reach 4000m without any Jetpack", 1, 5000),
+        Mission(34, MissionType.Height, "Absolute Pinnacle", "Reach a staggering 10,000m altitude", 10000, 10000, unlocksSkin = 14)
     )
 
     init {
@@ -152,7 +158,7 @@ class MissionManager(private val saveManager: SaveManager, private val currencyM
                 m.claimed = true // Auto-claim
                 
                 onMissionCompleted?.invoke(m)
-                trackDailyStreak()
+                trackSeasonProgress()
                 
                 saveManager.saveInt("current_linear_mission_index", currentIndex + 1)
                 saveManager.saveInt("current_linear_mission_prog", 0)
@@ -167,40 +173,29 @@ class MissionManager(private val saveManager: SaveManager, private val currencyM
     }
     
 
-    
-    private fun trackDailyStreak() {
-        val today = java.text.SimpleDateFormat("yyyyMMdd", java.util.Locale.US).format(java.util.Date())
-        var claimedToday = saveManager.getInt("claimed_today_$today", 0)
-        claimedToday++
-        saveManager.saveInt("claimed_today_$today", claimedToday)
-
-        if (claimedToday == 3) {
-            val lastDate = saveManager.getString("last_streak_date", "")
-            var streak = saveManager.getInt("daily_streak", 0)
-            
-            if (lastDate != today) {
-                // Determine if streak continues
-                try {
-                    val format = java.text.SimpleDateFormat("yyyyMMdd", java.util.Locale.US)
-                    val lastDateObj = if (lastDate.isNotEmpty()) format.parse(lastDate) else null
-                    val todayObj = format.parse(today)
-                    if (lastDateObj != null && todayObj != null && (todayObj.time - lastDateObj.time) > 2L * 24 * 60 * 60 * 1000) {
-                        streak = 1 // Missed a day, reset streak
-                    } else {
-                        streak++
-                    }
-                } catch (e: Exception) { streak = 1 }
-                
-                saveManager.saveString("last_streak_date", today)
-                saveManager.saveInt("daily_streak", streak)
-
-                if (streak >= 5) {
-                    saveManager.saveBoolean("skin_unlocked_12", true) // Unlock Chrome Edition
-                    onStreakUnlockedCallback?.invoke()
-                }
-            }
+    fun getSeasonDaysRemaining(): Int {
+        var startEpoch = saveManager.getLong("season_start_epoch", 0L)
+        if (startEpoch == 0L) {
+            startEpoch = System.currentTimeMillis()
+            saveManager.saveLong("season_start_epoch", startEpoch)
         }
+        val currentEpoch = System.currentTimeMillis()
+        val daysElapsed = ((currentEpoch - startEpoch) / (1000 * 60 * 60 * 24)).toInt()
+        val daysRemaining = 21 - daysElapsed
+        
+        if (daysRemaining <= 0) {
+            // Reset Season
+            saveManager.saveLong("season_start_epoch", currentEpoch)
+            saveManager.saveInt("current_linear_mission_index", 0)
+            saveManager.saveInt("current_linear_mission_prog", 0)
+            loadMissions()
+            return 21
+        }
+        return daysRemaining
     }
     
+    private fun trackSeasonProgress() {
+        // We can add seasonal rewards here if needed
+    }
 
 }

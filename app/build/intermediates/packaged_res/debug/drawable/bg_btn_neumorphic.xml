@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Top-left light reflection (soft highlight) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#4DFFFFFF" />
+            <corners android:radius="32dp"/>
+            <padding android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="2dp" />
+        </shape>
+    </item>
+    <!-- Bottom-right dark shadow -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#66000000" />
+            <corners android:radius="32dp"/>
+            <padding android:left="0dp" android:top="0dp" android:right="3dp" android:bottom="3dp" />
+        </shape>
+    </item>
+    <!-- Main base color (Neon Purple) -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#A020F0" />
+            <corners android:radius="32dp"/>
+        </shape>
+    </item>
+</layer-list>

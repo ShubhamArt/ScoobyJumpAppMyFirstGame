@@ -49,39 +49,29 @@ class BubbleTextView @JvmOverloads constructor(
             p.textAlign = Paint.Align.LEFT
         }
 
-        // 1. Drop Shadow: standard bottom-right shadow with 0.5 alpha black
-        syncPaint(shadowPaint)
-        shadowPaint.style = Paint.Style.FILL
-        shadowPaint.color = Color.parseColor("#80000000") // 0.5 alpha black
-        shadowPaint.setShadowLayer(4f, 6f, 8f, Color.parseColor("#80000000"))
-        
         // Use standard text drawing coordinates
         val x = paddingLeft.toFloat()
         val y = paddingTop + baseline.toFloat()
-        
-        canvas.drawText(text.toString(), x, y, shadowPaint)
 
-        // 2. Outline: 3dp thick stroke using color #4A148C
+        // 1. Drop Shadow and Outline: Outline with 3dp thick stroke using color #4A148C and a shadow behind it
         syncPaint(strokePaint)
         strokePaint.style = Paint.Style.STROKE
         strokePaint.strokeWidth = strokeWidthPx * 2 // Stroke expands from center, so 2x to get 3dp outside
         strokePaint.strokeJoin = Paint.Join.ROUND
         strokePaint.color = Color.parseColor("#4A148C")
+        strokePaint.setShadowLayer(4f, 6f, 8f, Color.parseColor("#80000000")) // 0.5 alpha black shadow
         
         canvas.drawText(text.toString(), x, y, strokePaint)
 
-        // 3. Inner Glow / Top Highlight: White shadow with negative Y offset
+        // 2. Inner Glow / Top Highlight: White shadow with negative Y offset
         syncPaint(highlightPaint)
         highlightPaint.style = Paint.Style.FILL
         highlightPaint.color = Color.WHITE
-        // We use a slight negative Y offset to create a "top-down" highlight. 
-        // A shadow layer is drawn BEFORE the text. So if the text is transparent, we only see the shadow? No.
-        // Easiest is to draw white text slightly shifted UP, then draw the main gradient text over it slightly shifted DOWN.
-        // The prompt asks for a "shadow layer with a very small radius (1dp) and a slight negative Y-offset".
+        // Draw white text with a shadow shifted UP, so the shadow peeks out over the later gradient fill
         highlightPaint.setShadowLayer(displayMetricsToPx(1f), 0f, displayMetricsToPx(-3f), Color.WHITE)
         canvas.drawText(text.toString(), x, y, highlightPaint)
 
-        // 4. Fill Gradient 
+        // 3. Fill Gradient 
         syncPaint(gradientPaint)
         gradientPaint.style = Paint.Style.FILL
         gradientPaint.shader = gradientShader

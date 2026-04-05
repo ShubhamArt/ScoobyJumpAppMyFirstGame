@@ -285,11 +285,11 @@ class Player(
         }
     }
 
-    fun activateJetpack() {
+    fun activateJetpack(durationFrames: Int = 180) {
         jetpackActive = true
-        jetpackTimer = 180
+        jetpackTimer = durationFrames
         isShieldActive = true
-        shieldTimer = 180
+        shieldTimer = durationFrames
     }
 
     fun activateShield(duration: Int = 300) {

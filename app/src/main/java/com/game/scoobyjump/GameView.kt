@@ -206,6 +206,31 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
         }
     }
 
+    fun applyStartingPowerUp(type: String) {
+        powerUpUsedThisRun = true
+        when (type) {
+            "shield" -> {
+                player?.activateShield(999999)
+                floatingTexts.add(FloatingText(screenWidth/2, screenHeight/2 - 100f, 1f, "SHIELD EQUIPPED!", Color.CYAN))
+            }
+            "magnet" -> {
+                player?.activateMagnet(999999)
+                floatingTexts.add(FloatingText(screenWidth/2, screenHeight/2 - 100f, 1f, "MAGNET EQUIPPED!", Color.parseColor("#E040FB")))
+            }
+            "boost" -> {
+                player?.activateJetpack()
+                floatingTexts.add(FloatingText(screenWidth/2, screenHeight/2 - 100f, 1f, "BOOST EQUIPPED!", Color.YELLOW))
+            }
+            "double" -> {
+                scoreManager.multiplier = 2
+                player?.activateMultiplier(999999)
+                floatingTexts.add(FloatingText(screenWidth/2, screenHeight/2 - 100f, 1f, "DOUBLE SCORE EQUIPPED!", Color.parseColor("#FFDF00")))
+            }
+        }
+        audioManager?.playPowerUp()
+        particleManager?.spawnExplosion(screenWidth/2, screenHeight/2, Color.YELLOW)
+    }
+
     override fun surfaceChanged(holder: SurfaceHolder, format: Int, w: Int, h: Int) {
         screenWidth = w.toFloat()
         screenHeight = h.toFloat()
@@ -350,16 +375,25 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
             scoreManager.addBonus(500)
             audioManager?.playPowerUp()
             particleManager?.spawnExplosion(p.x + p.width/2, p.y + p.height/2, android.graphics.Color.YELLOW)
+            val powerUpSave = SaveManager(context)
             when (powerUpType) {
                 PowerUpType.JETPACK -> {
-                    p.activateJetpack()
+                    val level = powerUpSave.getInt("powerup_level_lightning", 1)
+                    val duration = 180 + ((level - 1) * 120) // Base 3 sec + 2 sec per level
+                    p.activateJetpack(duration)
                     runUsedJetpack = true
                 }
-                PowerUpType.SHIELD -> p.activateShield()
+                PowerUpType.SHIELD -> {
+                    val level = powerUpSave.getInt("powerup_level_shield", 1)
+                    val duration = 300 + ((level - 1) * 120) // Base 5 sec + 2 sec per level
+                    p.activateShield(duration)
+                }
                 PowerUpType.DOUBLE_JUMP -> p.gainDoubleJump()
                 PowerUpType.ANTI_GRAVITY -> p.activateAntiGravity()
                 PowerUpType.MAGNET -> {
-                    p.activateMagnet(600)
+                    val level = powerUpSave.getInt("powerup_level_magnet", 1)
+                    val duration = 600 + ((level - 1) * 120) // Base 10 sec + 2 sec per level
+                    p.activateMagnet(duration)
                     missionManager?.trackEvent(MissionEvent.MAGNET_COLLECTED, 1)
                     floatingTexts.add(FloatingText(p.x, p.y, 1f, "MAGNET!", Color.CYAN))
                 }

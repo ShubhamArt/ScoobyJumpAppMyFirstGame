@@ -1,0 +1,4 @@
+com.game.scoobyjump.test.app-androidTest-0 C:\Users\Shubham\Desktop\ScoobyJumpAppNew\app\build\generated\res\resValues\androidTest\debug
+com.game.scoobyjump.test.app-mergeDebugAndroidTestResources-1 C:\Users\Shubham\Desktop\ScoobyJumpAppNew\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.game.scoobyjump.test.app-mergeDebugAndroidTestResources-2 C:\Users\Shubham\Desktop\ScoobyJumpAppNew\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.game.scoobyjump.test.app-merged_res-3 C:\Users\Shubham\Desktop\ScoobyJumpAppNew\app\build\intermediates\merged_res\debugAndroidTest

@@ -248,6 +248,13 @@ class MainActivity : AppCompatActivity() {
             val selectedSkinId = saveManager.getInt("equipped_skin", 0)
             val colorStr = skinManager.getSkinColor(selectedSkinId)
             gameView.initializeGame(colorStr)
+            
+            val activePowerUp = saveManager.getString("active_power_up", "")
+            if (activePowerUp.isNotEmpty()) {
+                gameView.applyStartingPowerUp(activePowerUp)
+                saveManager.saveString("active_power_up", "")
+            }
+            
             startGame()
         }
 
@@ -290,6 +297,39 @@ class MainActivity : AppCompatActivity() {
             audioManager.playClick()
             showHowToPlayDialog()
         }
+
+        val openDailyReward: (View) -> Unit = {
+            audioManager.playClick()
+            showDailyRewardDialog()
+        }
+        findViewById<View>(R.id.btn_daily_reward)?.setOnClickListener(openDailyReward)
+        findViewById<View>(R.id.daily_reward_icon)?.setOnClickListener(openDailyReward)
+
+        findViewById<View>(R.id.btn_power_ups_info)?.setOnClickListener {
+            audioManager.playClick()
+            showPowerUpsDialog()
+        }
+
+        val shieldUpgradeAction = View.OnClickListener {
+            audioManager.playClick()
+            triggerPowerUpUpgrade("shield")
+        }
+        findViewById<View>(R.id.btn_upgrade_shield)?.setOnClickListener(shieldUpgradeAction)
+        findViewById<View>(R.id.icon_upgrade_shield)?.setOnClickListener(shieldUpgradeAction)
+
+        val magnetUpgradeAction = View.OnClickListener {
+            audioManager.playClick()
+            triggerPowerUpUpgrade("magnet")
+        }
+        findViewById<View>(R.id.btn_upgrade_magnet)?.setOnClickListener(magnetUpgradeAction)
+        findViewById<View>(R.id.icon_upgrade_magnet)?.setOnClickListener(magnetUpgradeAction)
+
+        val lightningUpgradeAction = View.OnClickListener {
+            audioManager.playClick()
+            triggerPowerUpUpgrade("lightning")
+        }
+        findViewById<View>(R.id.btn_upgrade_lightning)?.setOnClickListener(lightningUpgradeAction)
+        findViewById<View>(R.id.icon_upgrade_lightning)?.setOnClickListener(lightningUpgradeAction)
     }
     
     private fun showHowToPlayDialog() {
@@ -335,27 +375,43 @@ class MainActivity : AppCompatActivity() {
             setBackgroundDrawable(android.graphics.drawable.ColorDrawable(Color.TRANSPARENT))
             addFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
             setDimAmount(0.85f)
+            
+            val displayMetrics = resources.displayMetrics
+            setLayout((displayMetrics.widthPixels * 0.95).toInt(), android.view.ViewGroup.LayoutParams.WRAP_CONTENT)
+            
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
                 addFlags(android.view.WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
                 attributes?.blurBehindRadius = 24
             }
         }
 
+        val tabSeason = view.findViewById<TextView>(R.id.tab_season)
+        val tabCompleted = view.findViewById<TextView>(R.id.tab_completed)
+        val resetTimerText = view.findViewById<TextView>(R.id.reset_timer_text)
+        val globalSoonMsg = view.findViewById<TextView>(R.id.global_coming_soon_missions)
         val recyclerView = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.missions_recycler_view)
+        
+        var displayMissions = missionManager.missions.toList()
+        var currentTab = "SEASON"
+
+        val daysRemaining = missionManager.getSeasonDaysRemaining()
+        resetTimerText?.text = "SEASON ENDS IN: $daysRemaining DAYS"
+
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         
         val adapter = object : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
-            override fun getItemCount() = missionManager.missions.size
+            override fun getItemCount() = displayMissions.size
             override fun onCreateViewHolder(parent: android.view.ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
                 val itemView = layoutInflater.inflate(R.layout.item_mission, parent, false)
                 return object : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {}
             }
             override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
-                val mission = missionManager.missions[position]
+                val mission = displayMissions[position]
                 val itemView = holder.itemView
                 
                 itemView.findViewById<TextView>(R.id.missionTitle).text = mission.title
                 itemView.findViewById<TextView>(R.id.missionDesc).text = mission.desc
+                itemView.findViewById<TextView>(R.id.missionRewardText).text = "${mission.reward}"
                 
                 itemView.findViewById<ProgressBar>(R.id.missionProgress).apply {
                     max = mission.target
@@ -363,41 +419,76 @@ class MainActivity : AppCompatActivity() {
                 }
                 
                 val progText = itemView.findViewById<TextView>(R.id.missionProgressText)
+                progText.text = "${mission.progress} / ${mission.target}"
+                
                 val solvedStamp = itemView.findViewById<View>(R.id.solvedStampContainer)
                 val lockedStamp = itemView.findViewById<View>(R.id.lockedStampContainer)
+                val cardView = itemView as? com.google.android.material.card.MaterialCardView
                 
-                val ratio = if (mission.target > 0) mission.progress.toFloat() / mission.target else 0f
-                val barsFilled = (10 * ratio).toInt().coerceIn(0, 10)
-                val barsEmpty = 10 - barsFilled
-                val barStr = "[ ${"|".repeat(barsFilled)}${"-".repeat(barsEmpty)} ]"
-                progText.text = "$barStr  ${mission.progress}/${mission.target}"
-                
-                val currentIndex = saveManager.getInt("current_linear_mission_index", 0)
-                
-                if (position > currentIndex) {
-                    lockedStamp.visibility = View.VISIBLE
-                    solvedStamp.visibility = View.GONE
-                    itemView.findViewById<TextView>(R.id.missionTitle).text = "LOCKED"
-                    itemView.findViewById<TextView>(R.id.missionDesc).text = "Complete previous mission to unlock"
-                    (itemView as? com.google.android.material.card.MaterialCardView)?.setCardBackgroundColor(android.graphics.Color.parseColor("#151B29"))
-                    progText.text = "NOT STARTED"
-                } else {
+                if (currentTab != "SEASON") {
                     lockedStamp.visibility = View.GONE
-                    if (mission.completed || mission.claimed) {
-                        solvedStamp.visibility = View.VISIBLE
-                        progText.text = "DONE"
-                        (itemView as? com.google.android.material.card.MaterialCardView)?.setCardBackgroundColor(android.graphics.Color.parseColor("#FFD700"))
-                    } else {
+                    solvedStamp.visibility = View.VISIBLE
+                    cardView?.setCardBackgroundColor(Color.parseColor("#152D1D"))
+                    cardView?.strokeColor = Color.parseColor("#4CAF50")
+                    progText.text = "DONE"
+                } else {
+                    val currentIndex = saveManager.getInt("current_linear_mission_index", 0)
+                    
+                    if (mission.slot > currentIndex) {
+                        lockedStamp.visibility = View.VISIBLE
                         solvedStamp.visibility = View.GONE
-                        (itemView as? com.google.android.material.card.MaterialCardView)?.setCardBackgroundColor(android.graphics.Color.parseColor("#1E2A38"))
+                        cardView?.setCardBackgroundColor(Color.parseColor("#151B29"))
+                        cardView?.strokeColor = Color.parseColor("#2A3A4A")
+                    } else {
+                        lockedStamp.visibility = View.GONE
+                        if (mission.completed || mission.claimed) {
+                            solvedStamp.visibility = View.VISIBLE
+                            progText.text = "DONE"
+                            cardView?.setCardBackgroundColor(Color.parseColor("#152D1D"))
+                            cardView?.strokeColor = Color.parseColor("#4CAF50")
+                        } else {
+                            solvedStamp.visibility = View.GONE
+                            cardView?.setCardBackgroundColor(Color.parseColor("#1E2A38"))
+                            cardView?.strokeColor = Color.parseColor("#00E5FF")
+                        }
                     }
                 }
             }
         }
         recyclerView.adapter = adapter
         
-        val activeIndex = saveManager.getInt("current_linear_mission_index", 0)
-        recyclerView.scrollToPosition(activeIndex)
+        fun refreshTabs() {
+            if (currentTab == "SEASON") {
+                tabSeason.setBackgroundResource(R.drawable.bg_buy_btn_gold)
+                tabSeason.setTextColor(Color.WHITE)
+                tabCompleted.setBackgroundResource(R.drawable.bg_cyan_border_panel)
+                tabCompleted.setTextColor(Color.parseColor("#A0B0D0"))
+                resetTimerText.visibility = View.VISIBLE
+                globalSoonMsg.visibility = View.GONE
+                recyclerView.visibility = View.VISIBLE
+                displayMissions = missionManager.missions.toList()
+                val activeIndex = saveManager.getInt("current_linear_mission_index", 0)
+                recyclerView.scrollToPosition(activeIndex)
+            } else {
+                tabCompleted.setBackgroundResource(R.drawable.bg_buy_btn_gold)
+                tabCompleted.setTextColor(Color.WHITE)
+                tabSeason.setBackgroundResource(R.drawable.bg_cyan_border_panel)
+                tabSeason.setTextColor(Color.parseColor("#A0B0D0"))
+                resetTimerText.visibility = View.INVISIBLE
+                displayMissions = missionManager.missions.filter { it.completed }
+                if (displayMissions.isEmpty()) {
+                    recyclerView.visibility = View.GONE
+                } else {
+                    recyclerView.visibility = View.VISIBLE
+                }
+                globalSoonMsg.visibility = View.VISIBLE
+            }
+            adapter.notifyDataSetChanged()
+        }
+        
+        tabSeason.setOnClickListener { currentTab = "SEASON"; refreshTabs(); audioManager.playClick() }
+        tabCompleted.setOnClickListener { currentTab = "COMPLETED"; refreshTabs(); audioManager.playClick() }
+        refreshTabs()
 
         // Slide-in Animation from Right
         val rootPanel = view.findViewById<View>(R.id.missions_recycler_view).parent as View
@@ -407,13 +498,15 @@ class MainActivity : AppCompatActivity() {
             .withEndAction { /* Make sure UI thread concludes animation */ }
             .start()
 
-        val closeBtn = view.findViewById<Button>(R.id.btn_close_missions)
-        closeBtn.setOnClickListener {
-            closeBtn.isEnabled = false
+        val closeAction = android.view.View.OnClickListener {
+            view.findViewById<android.view.View>(R.id.btn_close_missions).isEnabled = false
+            view.findViewById<android.view.View>(R.id.btn_close_missions_top)?.isEnabled = false
             rootPanel.animate().translationX(1000f).setDuration(250)
                 .withEndAction { dialog.dismiss() }
                 .start()
         }
+        view.findViewById<Button>(R.id.btn_close_missions).setOnClickListener(closeAction)
+        view.findViewById<android.widget.ImageButton>(R.id.btn_close_missions_top)?.setOnClickListener(closeAction)
 
 
         dialog.setOnDismissListener {
@@ -759,6 +852,60 @@ class MainActivity : AppCompatActivity() {
             androidx.core.graphics.drawable.DrawableCompat.setTint(it, Color.parseColor(skinColor))
             playerPreviewImage.background = it
         }
+
+        updateHomeUI()
+    }
+    
+    private fun updateHomeUI() {
+        val coins = currencyManager.getCoins()
+        homeCoinsText.text = " $coins"
+        
+        val bestScoreText = findViewById<android.widget.TextView>(R.id.home_best_score_text)
+        if (bestScoreText != null) {
+            val best = localHistoryManager.getHighestAltitude()
+            bestScoreText.text = "$best"
+        }
+        
+        gameView.onCoinsChange?.invoke(coins)
+    }
+
+    private fun spawnCoinBurst(originView: View) {
+        val root = findViewById<android.view.ViewGroup>(android.R.id.content)
+        val location = IntArray(2)
+        originView.getLocationInWindow(location)
+
+        val targetView = findViewById<View>(R.id.home_coin_icon) ?: return
+        val targetLocation = IntArray(2)
+        targetView.getLocationInWindow(targetLocation)
+
+        for (i in 0 until 10) {
+            val coin = android.widget.ImageView(this).apply {
+                setImageResource(R.drawable.ic_coin)
+                layoutParams = android.widget.FrameLayout.LayoutParams(64, 64)
+                x = location[0].toFloat() + (Math.random() * originView.width).toFloat()
+                y = location[1].toFloat() + (Math.random() * originView.height).toFloat()
+                elevation = 100f
+            }
+            root.addView(coin)
+
+            val animX = android.animation.ObjectAnimator.ofFloat(coin, "x", coin.x, targetLocation[0].toFloat())
+            val animY = android.animation.ObjectAnimator.ofFloat(coin, "y", coin.y, targetLocation[1].toFloat())
+
+            android.animation.AnimatorSet().apply {
+                playTogether(animX, animY)
+                duration = 500L + (Math.random() * 200).toLong()
+                interpolator = android.view.animation.AccelerateInterpolator()
+                startDelay = (i * 30).toLong()
+                addListener(object : android.animation.AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: android.animation.Animator) {
+                        root.removeView(coin)
+                        audioManager.playDing()
+                        updateHomeUI() // Visual sync on hit
+                    }
+                })
+                start()
+            }
+        }
     }
 
     private fun showGameOverScreen(score: Int) {
@@ -864,8 +1011,16 @@ class MainActivity : AppCompatActivity() {
         btnRetry.setOnClickListener {
             dialog.dismiss()
             audioManager.pauseGameOverSequence()
+            gameView.resumeMainLoop() // Fix thread suspension freeze
             val selectedSkinId = saveManager.getInt("equipped_skin", 0)
             gameView.initializeGame(skinManager.getSkinColor(selectedSkinId))
+            
+            val activePowerUp = saveManager.getString("active_power_up", "")
+            if (activePowerUp.isNotEmpty()) {
+                gameView.applyStartingPowerUp(activePowerUp)
+                saveManager.saveString("active_power_up", "")
+            } 
+            
             startGame()
         }
 
@@ -883,6 +1038,7 @@ class MainActivity : AppCompatActivity() {
         view.findViewById<ImageButton>(R.id.btn_go_home).setOnClickListener {
             dialog.dismiss()
             audioManager.pauseGameOverSequence()
+            gameView.resumeMainLoop() // Fix thread suspension freeze
             showHomeScreen()
         }
 
@@ -1005,17 +1161,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (gameView.gameState == GameState.PLAYING) audioManager.resumeBGM()
+        audioManager.onAppResumed()
+        updateDailyRewardUI()
     }
 
     override fun onPause() {
         super.onPause()
-        audioManager.pauseBGM()
-        audioManager.pauseGameOverSequence()
         if (gameView.gameState == GameState.PLAYING) {
             gameView.gameState = GameState.PAUSED
             showPauseDialog()
         }
+        audioManager.onAppPaused()
     }
 
     override fun onDestroy() {
@@ -1273,7 +1429,7 @@ class MainActivity : AppCompatActivity() {
         dialog.window?.apply {
             setBackgroundDrawable(android.graphics.drawable.ColorDrawable(Color.TRANSPARENT))
             addFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-            setDimAmount(0.85f)
+            setDimAmount(0.9f)
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
                 addFlags(android.view.WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
                 attributes?.blurBehindRadius = 24
@@ -1283,7 +1439,7 @@ class MainActivity : AppCompatActivity() {
         val recyclerView = view.findViewById<androidx.recyclerview.widget.RecyclerView>(R.id.leaderboard_recycler_view)
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
-        val records = localHistoryManager.getTopRuns(20)
+        val records = localHistoryManager.getTopRuns(30).filter { it.score > 0 }.take(20)
 
         val adapter = object : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
             override fun getItemCount() = records.size
@@ -1296,31 +1452,35 @@ class MainActivity : AppCompatActivity() {
                 val itemView = holder.itemView
                 
                 val rankText = itemView.findViewById<TextView>(R.id.lb_rank)
-                val heroIcon = itemView.findViewById<View>(R.id.lb_hero_icon)
+                val rankBgIcon = itemView.findViewById<ImageView>(R.id.rank_bg_icon)
+                val playerNameText = itemView.findViewById<TextView>(R.id.lb_player_name)
                 val scoreStatsText = itemView.findViewById<TextView>(R.id.lb_score_stats_text)
+                val coinStatsText = itemView.findViewById<TextView>(R.id.lb_coin_stats_text)
                 
-                rankText.text = "#${position + 1}"
+                rankText.text = "${position + 1}"
+                playerNameText.text = "Player #${position + 1}"
                 
-                // Color rank string based on top 3
                 when(position) {
-                    0 -> rankText.setTextColor(Color.parseColor("#FFD700")) // Gold
-                    1 -> rankText.setTextColor(Color.parseColor("#C0C0C0")) // Silver
-                    2 -> rankText.setTextColor(Color.parseColor("#CD7F32")) // Bronze
-                    else -> rankText.setTextColor(Color.WHITE)
+                    0 -> { 
+                        rankBgIcon.visibility = View.VISIBLE; rankBgIcon.setColorFilter(Color.parseColor("#FFC107")); rankText.setTextColor(Color.BLACK); playerNameText.setTextColor(Color.parseColor("#FFC107"))
+                        itemView.scaleX = 1.03f; itemView.scaleY = 1.03f; itemView.elevation = 8f; itemView.alpha = 1.0f
+                    }
+                    1 -> { 
+                        rankBgIcon.visibility = View.VISIBLE; rankBgIcon.setColorFilter(Color.parseColor("#B0BEC5")); rankText.setTextColor(Color.BLACK); playerNameText.setTextColor(Color.parseColor("#B0BEC5"))
+                        itemView.scaleX = 1.01f; itemView.scaleY = 1.01f; itemView.elevation = 6f; itemView.alpha = 1.0f
+                    }
+                    2 -> { 
+                        rankBgIcon.visibility = View.VISIBLE; rankBgIcon.setColorFilter(Color.parseColor("#CD7F32")); rankText.setTextColor(Color.WHITE); playerNameText.setTextColor(Color.parseColor("#CD7F32"))
+                        itemView.scaleX = 1.0f; itemView.scaleY = 1.0f; itemView.elevation = 4f; itemView.alpha = 1.0f
+                    }
+                    else -> { 
+                        rankBgIcon.visibility = View.INVISIBLE; rankText.setTextColor(Color.WHITE); playerNameText.setTextColor(Color.WHITE)
+                        itemView.scaleX = 0.96f; itemView.scaleY = 0.96f; itemView.elevation = 0f; itemView.alpha = 0.85f
+                    }
                 }
 
-                val mins = record.durationSeconds / 60
-                val secs = record.durationSeconds % 60
-                
-                scoreStatsText.text = "${record.score}m  |  ${record.coins} Coins  |  ${String.format("%02d:%02d", mins, secs)}"
-                
-                val skinColor = skinManager.getSkinColor(record.skinId)
-                val drawable = androidx.core.content.ContextCompat.getDrawable(this@MainActivity, R.drawable.bg_player_preview)?.mutate()
-                drawable?.let {
-                    androidx.core.graphics.drawable.DrawableCompat.setTintMode(it, android.graphics.PorterDuff.Mode.MULTIPLY)
-                    androidx.core.graphics.drawable.DrawableCompat.setTint(it, Color.parseColor(skinColor))
-                    heroIcon.background = it
-                }
+                scoreStatsText.text = java.text.NumberFormat.getNumberInstance(java.util.Locale.US).format(record.score)
+                coinStatsText?.text = java.text.NumberFormat.getNumberInstance(java.util.Locale.US).format(record.coins)
             }
         }
         recyclerView.adapter = adapter
@@ -1331,7 +1491,11 @@ class MainActivity : AppCompatActivity() {
         rootPanel.animate().translationY(0f).setDuration(400)
             .setInterpolator(android.view.animation.OvershootInterpolator(1.2f)).start()
 
-        view.findViewById<Button>(R.id.btn_close_leaderboard).setOnClickListener {
+        view.findViewById<View>(R.id.btn_close_leaderboard_top).setOnClickListener {
+            dialog.dismiss()
+        }
+        
+        view.findViewById<View>(R.id.btn_close_leaderboard)?.setOnClickListener {
             dialog.dismiss()
         }
 
@@ -1343,13 +1507,255 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    override fun onPause() {
-        super.onPause()
-        audioManager.onAppPaused()
+    private fun showDailyRewardDialog() {
+        val view = layoutInflater.inflate(R.layout.dialog_daily_reward, null)
+        val dialog = android.app.Dialog(this)
+        dialog.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
+        dialog.setContentView(view)
+
+        dialog.window?.apply {
+            setBackgroundDrawable(android.graphics.drawable.ColorDrawable(Color.TRANSPARENT))
+            addFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            setDimAmount(0.85f)
+        }
+
+        view.findViewById<View>(R.id.btn_close_daily_reward).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        val lastClaimStr = saveManager.getString("last_daily_claim_time", "0")
+        val lastClaim = lastClaimStr.toLongOrNull() ?: 0L
+        val now = System.currentTimeMillis()
+        val oneDayMs = 24 * 60 * 60 * 1000L
+        
+        var currentStreak = saveManager.getInt("daily_reward_streak", 1)
+        
+        // Reset streak if more than 48 hours have passed
+        if (now - lastClaim > 2 * oneDayMs && lastClaim > 0) {
+            currentStreak = 1
+            saveManager.saveInt("daily_reward_streak", currentStreak)
+        }
+        
+        // Highlight active day in UI
+        val panels = arrayOf(
+            Pair(view.findViewById<View>(R.id.day_1_panel), view.findViewById<TextView>(R.id.day_1_title)),
+            Pair(view.findViewById<View>(R.id.day_2_panel), view.findViewById<TextView>(R.id.day_2_title)),
+            Pair(view.findViewById<View>(R.id.day_3_panel), view.findViewById<TextView>(R.id.day_3_title)),
+            Pair(view.findViewById<View>(R.id.day_4_panel), view.findViewById<TextView>(R.id.day_4_title)),
+            Pair(view.findViewById<View>(R.id.day_5_panel), view.findViewById<TextView>(R.id.day_5_title)),
+            Pair(view.findViewById<View>(R.id.day_6_panel), view.findViewById<TextView>(R.id.day_6_title)),
+            Pair(view.findViewById<View>(R.id.day_7_panel), view.findViewById<TextView>(R.id.day_7_title))
+        )
+        
+        for (i in panels.indices) {
+            val panel = panels[i].first
+            val titleText = panels[i].second
+            val dayNumber = i + 1
+            
+            if (dayNumber < currentStreak) {
+                // Past days: Show checked off or dimmed
+                panel?.alpha = 0.5f
+                titleText?.text = "CLAIMED"
+                titleText?.setTextColor(Color.parseColor("#4CAF50"))
+                panel?.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#1C1C2A"))
+            } else if (dayNumber == currentStreak) {
+                // Current Day: Highlight!
+                panel?.alpha = 1.0f
+                panel?.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#4A148C"))
+                panel?.setBackgroundResource(R.drawable.bg_hero_equipped_neon)
+                titleText?.setTextColor(Color.parseColor("#E040FB"))
+            } else {
+                // Future days
+                panel?.alpha = 1.0f
+            }
+        }
+
+        val btnClaim = view.findViewById<Button>(R.id.btn_claim_reward)
+        var hasClaimedLocally = false
+        
+        if (now - lastClaim < oneDayMs) {
+            btnClaim.isEnabled = false
+            btnClaim.text = "COME BACK TOMORROW"
+            btnClaim.setBackgroundResource(R.drawable.bg_gray_btn)
+        } else {
+            btnClaim.setOnClickListener {
+                if (hasClaimedLocally) return@setOnClickListener
+                hasClaimedLocally = true
+                
+                // Reward scaling logic
+                val rewards = listOf(50, 100, 150, 200, 250, 300, 500)
+                val activeReward = rewards[(currentStreak - 1).coerceIn(0, 6)]
+                
+                saveManager.saveString("last_daily_claim_time", now.toString())
+                
+                // Advance Streak
+                val nextStreak = if (currentStreak >= 7) 1 else currentStreak + 1
+                saveManager.saveInt("daily_reward_streak", nextStreak)
+                
+                audioManager.playChaChing()
+                currencyManager.addCoins(activeReward)
+                
+                spawnCoinBurst(it)
+                Toast.makeText(this, "Claimed $activeReward Coins!", Toast.LENGTH_SHORT).show()
+                
+                // Dim the active panel
+                val activePair = panels[(currentStreak - 1).coerceIn(0, 6)]
+                activePair.first?.alpha = 0.5f
+                activePair.first?.backgroundTintList = android.content.res.ColorStateList.valueOf(Color.parseColor("#1C1C2A"))
+                activePair.second?.text = "CLAIMED"
+                activePair.second?.setTextColor(Color.parseColor("#4CAF50"))
+                
+                btnClaim.isEnabled = false
+                btnClaim.text = "COME BACK TOMORROW"
+                btnClaim.setBackgroundResource(R.drawable.bg_gray_btn)
+                
+                // Allow the animation to play out before dismissing
+                updateDailyRewardUI()
+                view.postDelayed({
+                    dialog.dismiss()
+                }, 1500)
+            }
+        }
+
+        dialog.setOnDismissListener {
+            audioManager.stopAmbientSparkle()
+        }
+
+        audioManager.startAmbientSparkle()
+        dialog.show()
     }
 
-    override fun onResume() {
-        super.onResume()
-        audioManager.onAppResumed()
+    private fun showPowerUpsDialog() {
+        val view = layoutInflater.inflate(R.layout.dialog_power_ups, null)
+        val dialog = android.app.Dialog(this)
+        dialog.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
+        dialog.setContentView(view)
+
+        dialog.window?.apply {
+            setBackgroundDrawable(android.graphics.drawable.ColorDrawable(Color.TRANSPARENT))
+            addFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            setDimAmount(0.85f)
+        }
+
+        view.findViewById<View>(R.id.btn_close_power_ups).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        val btnShield = view.findViewById<View>(R.id.btn_shield)
+        val btnMagnet = view.findViewById<View>(R.id.btn_magnet)
+        val btnBoost = view.findViewById<View>(R.id.btn_boost)
+        val btnDouble = view.findViewById<View>(R.id.btn_double)
+
+        fun refreshUI() {
+            val current = saveManager.getString("active_power_up", "")
+            btnShield.setBackgroundResource(if (current == "shield") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
+            btnMagnet.setBackgroundResource(if (current == "magnet") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
+            btnBoost.setBackgroundResource(if (current == "boost") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
+            btnDouble.setBackgroundResource(if (current == "double") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
+        }
+
+        fun equip(type: String) {
+            val current = saveManager.getString("active_power_up", "")
+            if (current == type) {
+                saveManager.saveString("active_power_up", "")
+                audioManager.playClick()
+                refreshUI()
+                return // unequipping
+            }
+            if (currencyManager.getCoins() >= 100) {
+                currencyManager.spendCoins(100)
+                saveManager.saveString("active_power_up", type)
+                audioManager.playPowerUp()
+                updateHomeUI()
+                refreshUI()
+            } else {
+                audioManager.playCrash()
+                Toast.makeText(this, "Not enough coins!", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+        btnShield.setOnClickListener { equip("shield") }
+        btnMagnet.setOnClickListener { equip("magnet") }
+        btnBoost.setOnClickListener { equip("boost") }
+        btnDouble.setOnClickListener { equip("double") }
+
+        refreshUI()
+
+        view.findViewById<Button>(R.id.btn_okay).setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.setOnDismissListener {
+            audioManager.stopAmbientSparkle()
+        }
+
+        audioManager.startAmbientSparkle()
+        dialog.show()
+    }
+
+    private fun triggerPowerUpUpgrade(type: String) {
+        val levelKey = "powerup_level_$type"
+        val currentLevel = saveManager.getInt(levelKey, 1)
+        val maxLevel = 5
+        
+        if (currentLevel >= maxLevel) {
+            Toast.makeText(this, "Maximum Level Reached!", Toast.LENGTH_SHORT).show()
+            audioManager.playCrash()
+            return
+        }
+
+        val cost = currentLevel * 500 // Cost scaling: 500, 1000, 1500, 2000
+        
+        val name = when(type) {
+            "shield" -> "Shield"
+            "magnet" -> "Magnet"
+            "lightning" -> "Jetpack (Surge)"
+            else -> "Power-Up"
+        }
+
+        AlertDialog.Builder(this, android.R.style.Theme_DeviceDefault_Dialog_Alert)
+            .setTitle("Upgrade $name")
+            .setMessage("Upgrade to Level ${currentLevel + 1} for $cost Coins?\n\nIncreases duration by 2 seconds permanently.")
+            .setPositiveButton("UPGRADE") { _, _ ->
+                if (currencyManager.getCoins() >= cost) {
+                    currencyManager.spendCoins(cost)
+                    saveManager.saveInt(levelKey, currentLevel + 1)
+                    audioManager.playChaChing()
+                    updateHomeUI()
+                    spawnCoinBurst(findViewById(R.id.home_coins_capsule) ?: return@setPositiveButton)
+                    Toast.makeText(this, "$name upgraded to Level ${currentLevel + 1}!", Toast.LENGTH_SHORT).show()
+                } else {
+                    audioManager.playCrash()
+                    Toast.makeText(this, "Not enough coins!", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("CANCEL", null)
+            .show()
+    }
+
+    private fun updateDailyRewardUI() {
+        val lastClaimStr = saveManager.getString("last_daily_claim_time", "0")
+        val lastClaim = lastClaimStr.toLongOrNull() ?: 0L
+        val now = System.currentTimeMillis()
+        val oneDayMs = 24 * 60 * 60 * 1000L
+        
+        val btnDailyReward = findViewById<View>(R.id.btn_daily_reward) ?: return
+        val notifDot = findViewById<View>(R.id.daily_reward_notification_dot)
+        val icon = findViewById<View>(R.id.daily_reward_icon)
+        
+        if (now - lastClaim >= oneDayMs) {
+            // Unclaimed
+            notifDot?.visibility = View.VISIBLE
+            btnDailyReward.alpha = 1.0f
+            if (icon?.animation == null) {
+                val pulseAnim = android.view.animation.AnimationUtils.loadAnimation(this, R.anim.pulse_glow)
+                icon?.startAnimation(pulseAnim)
+            }
+        } else {
+            // Claimed
+            notifDot?.visibility = View.GONE
+            btnDailyReward.alpha = 0.5f
+            icon?.clearAnimation()
+        }
     }
 }
