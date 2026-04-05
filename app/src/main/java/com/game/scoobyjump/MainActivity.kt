@@ -284,8 +284,47 @@ class MainActivity : AppCompatActivity() {
             audioManager.playShopOpen()
             showHeroShopDialog()
         }
+
+        val helpBtn = findViewById<View>(R.id.help_button)
+        helpBtn.setOnClickListener {
+            audioManager.playClick()
+            showHowToPlayDialog()
+        }
     }
     
+    private fun showHowToPlayDialog() {
+        val view = layoutInflater.inflate(R.layout.dialog_how_to_play, null)
+        val dialog = android.app.Dialog(this)
+        dialog.requestWindowFeature(android.view.Window.FEATURE_NO_TITLE)
+        dialog.setContentView(view)
+
+        dialog.window?.apply {
+            setBackgroundDrawable(android.graphics.drawable.ColorDrawable(Color.TRANSPARENT))
+            addFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+            setDimAmount(0.6f)
+        }
+
+        // Entrance animation
+        val rootPanel = view.findViewById<View>(R.id.how_to_play_title).parent as View
+        rootPanel.scaleX = 0.7f
+        rootPanel.scaleY = 0.7f
+        rootPanel.alpha = 0f
+        rootPanel.animate().scaleX(1f).scaleY(1f).alpha(1f).setDuration(250)
+            .setInterpolator(android.view.animation.OvershootInterpolator(1.2f))
+            .start()
+
+        val btnClose = view.findViewById<ImageButton>(R.id.btn_close_how_to_play)
+        btnClose.setOnClickListener {
+            btnClose.isEnabled = false
+            audioManager.playClick()
+            rootPanel.animate().scaleX(0.7f).scaleY(0.7f).alpha(0f).setDuration(200)
+                .withEndAction { dialog.dismiss() }
+                .start()
+        }
+
+        dialog.show()
+    }
+
     private fun showMissionsDialog() {
         val view = layoutInflater.inflate(R.layout.dialog_missions, null)
         val dialog = android.app.Dialog(this)
@@ -1302,5 +1341,15 @@ class MainActivity : AppCompatActivity() {
 
         audioManager.startAmbientSparkle()
         dialog.show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        audioManager.onAppPaused()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        audioManager.onAppResumed()
     }
 }

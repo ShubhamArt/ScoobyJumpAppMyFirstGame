@@ -12,6 +12,10 @@ class AudioManager(private val context: Context) {
     private var summaryMediaPlayer: MediaPlayer? = null
     private var sparkleMediaPlayer: MediaPlayer? = null
     
+    private var bgmWasPlaying = false
+    private var summaryWasPlaying = false
+    private var sparkleWasPlaying = false
+    
     private var jumpSoundId = -1
     private var crashSoundId = -1
     private var gameOverFailSoundId = -1
@@ -153,6 +157,23 @@ class AudioManager(private val context: Context) {
     fun stopAmbientSparkle() {
         sparkleMediaPlayer?.pause()
         sparkleMediaPlayer?.seekTo(0)
+    }
+
+    fun onAppPaused() {
+        bgmWasPlaying = mediaPlayer?.isPlaying == true
+        summaryWasPlaying = summaryMediaPlayer?.isPlaying == true
+        sparkleWasPlaying = sparkleMediaPlayer?.isPlaying == true
+
+        mediaPlayer?.pause()
+        summaryMediaPlayer?.pause()
+        sparkleMediaPlayer?.pause()
+    }
+
+    fun onAppResumed() {
+        if (!isSoundEnabled) return
+        if (bgmWasPlaying) mediaPlayer?.start()
+        if (summaryWasPlaying) summaryMediaPlayer?.start()
+        if (sparkleWasPlaying) sparkleMediaPlayer?.start()
     }
 
     fun release() {

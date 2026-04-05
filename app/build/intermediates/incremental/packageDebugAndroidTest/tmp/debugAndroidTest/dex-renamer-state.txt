@@ -1,4 +1,0 @@
-#Sat Apr 04 13:50:43 IST 2026
-base.0=C\:\\Users\\Shubham\\Desktop\\ScoobyJumpAppNew\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
-path.0=0/classes.dex
-renamed.0=classes.dex
