@@ -3339,6 +3339,7 @@ id browser_actions_menu_item_icon
 id browser_actions_menu_item_text
 id browser_actions_menu_items
 id browser_actions_menu_view
+id btn_antigravity
 id btn_best_score_panel
 id btn_boost
 id btn_buy_hero
@@ -3354,8 +3355,11 @@ id btn_close_power_ups
 id btn_close_shop
 id btn_daily_reward
 id btn_double
+id btn_doublejump
+id btn_energygem
 id btn_exit
 id btn_go_home
+id btn_legendary
 id btn_magnet
 id btn_okay
 id btn_power_ups_info
@@ -3407,8 +3411,12 @@ id contiguous
 id continuousVelocity
 id coordinator
 id cos
+id cost_antigravity
 id cost_boost
 id cost_double
+id cost_doublejump
+id cost_energygem
+id cost_legendary
 id cost_magnet
 id cost_shield
 id counterclockwise
@@ -3763,6 +3771,7 @@ id scroll
 id scrollIndicatorDown
 id scrollIndicatorUp
 id scrollView
+id scroll_container
 id scrollable
 id search_badge
 id search_bar
@@ -3865,9 +3874,13 @@ id time
 id timer_frame
 id title
 id titleDividerNoCustom
+id title_antigravity
 id title_boost
 id title_divider
 id title_double
+id title_doublejump
+id title_energygem
+id title_legendary
 id title_magnet
 id title_shield
 id title_template

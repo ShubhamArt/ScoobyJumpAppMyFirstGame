@@ -226,6 +226,24 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
                 player?.activateMultiplier(999999)
                 floatingTexts.add(FloatingText(screenWidth/2, screenHeight/2 - 100f, 1f, "DOUBLE SCORE EQUIPPED!", Color.parseColor("#FFDF00")))
             }
+            "antigravity" -> {
+                player?.activateAntiGravity()
+                floatingTexts.add(FloatingText(screenWidth/2, screenHeight/2 - 100f, 1f, "ANTI-GRAVITY READY!", Color.parseColor("#80DEEA")))
+            }
+            "doublejump" -> {
+                player?.gainDoubleJump()
+                floatingTexts.add(FloatingText(screenWidth/2, screenHeight/2 - 100f, 1f, "DOUBLE JUMP READY!", Color.parseColor("#FF9800")))
+            }
+            "energygem" -> {
+                spiritCharge = 100
+                onSpiritChargeChange?.invoke(spiritCharge)
+                floatingTexts.add(FloatingText(screenWidth/2, screenHeight/2 - 100f, 1f, "SPIRIT CHARGED!", Color.parseColor("#4CAF50")))
+            }
+            "legendary" -> {
+                player?.activateGhostSprint(300)
+                scoreManager.addBonus(10000)
+                floatingTexts.add(FloatingText(screenWidth/2, screenHeight/2 - 100f, 1f, "LEGENDARY STAR!", Color.parseColor("#FFC107")))
+            }
         }
         audioManager?.playPowerUp()
         particleManager?.spawnExplosion(screenWidth/2, screenHeight/2, Color.YELLOW)
@@ -778,13 +796,6 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
             array.put(obj)
         }
         ghostPathJson = array.toString()
-        
-        // Economy conversion: 10 coins per 1,000 pts
-        val earnedCoins = (fScore / 1000) * 10
-        val totalEarned = earnedCoins + sessionCoins
-        if (totalEarned > 0) {
-            currencyManager?.addCoins(totalEarned)
-        }
         
         onGameOver?.invoke(fScore)
     }

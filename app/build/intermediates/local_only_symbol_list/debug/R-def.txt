@@ -104,6 +104,7 @@ id ad_loading_overlay
 id best_score_layout
 id bottom_controls
 id brand_identity
+id btn_antigravity
 id btn_best_score_panel
 id btn_boost
 id btn_buy_hero
@@ -119,8 +120,11 @@ id btn_close_power_ups
 id btn_close_shop
 id btn_daily_reward
 id btn_double
+id btn_doublejump
+id btn_energygem
 id btn_exit
 id btn_go_home
+id btn_legendary
 id btn_magnet
 id btn_okay
 id btn_power_ups_info
@@ -139,8 +143,12 @@ id btn_upgrade_magnet
 id btn_upgrade_shield
 id btn_watch_ad_revive
 id coins_earned_layout
+id cost_antigravity
 id cost_boost
 id cost_double
+id cost_doublejump
+id cost_energygem
+id cost_legendary
 id cost_magnet
 id cost_shield
 id daily_reward_icon
@@ -245,6 +253,7 @@ id reward_text_2
 id reward_text_3
 id root_layout
 id rules_container
+id scroll_container
 id settings_button
 id shop_button
 id shop_coins_container
@@ -263,9 +272,13 @@ id tab_local
 id tab_season
 id timer_frame
 id title
+id title_antigravity
 id title_boost
 id title_divider
 id title_double
+id title_doublejump
+id title_energygem
+id title_legendary
 id title_magnet
 id title_shield
 id title_text

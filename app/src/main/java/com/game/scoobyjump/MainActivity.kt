@@ -948,14 +948,22 @@ class MainActivity : AppCompatActivity() {
         val sessionCoins = gameView.sessionCoins
         val skinId = saveManager.getInt("equipped_skin", 0)
         
+        // Coins
+        val totalEarned = sessionCoins
+        
         localHistoryManager.insertRun(RunHistoryRecord(
             score = score, 
-            coins = sessionCoins, 
+            coins = totalEarned, 
             durationSeconds = runTime, 
             timestamp = System.currentTimeMillis(), 
             skinId = skinId, 
             ghostPathJson = gameView.ghostPathJson
         ))
+        
+        // Final Economy Add
+        if (totalEarned > 0) {
+            currencyManager.addCoins(totalEarned)
+        }
         
         val exactHighScore = localHistoryManager.getHighestAltitude()
         
@@ -980,9 +988,6 @@ class MainActivity : AppCompatActivity() {
             bestText.text = "BEST: $exactHighScore"
         }
 
-        // Coins
-        val earnedCoins = (score / 1000) * 10
-        val totalEarned = earnedCoins + sessionCoins
         view.findViewById<TextView>(R.id.go_coins_earned_text).text = "+$totalEarned Coins"
 
         // Coin spin animation
@@ -1645,6 +1650,10 @@ class MainActivity : AppCompatActivity() {
         val btnMagnet = view.findViewById<View>(R.id.btn_magnet)
         val btnBoost = view.findViewById<View>(R.id.btn_boost)
         val btnDouble = view.findViewById<View>(R.id.btn_double)
+        val btnAntigravity = view.findViewById<View>(R.id.btn_antigravity)
+        val btnDoubleJump = view.findViewById<View>(R.id.btn_doublejump)
+        val btnEnergyGem = view.findViewById<View>(R.id.btn_energygem)
+        val btnLegendary = view.findViewById<View>(R.id.btn_legendary)
 
         fun refreshUI() {
             val current = saveManager.getString("active_power_up", "")
@@ -1652,6 +1661,10 @@ class MainActivity : AppCompatActivity() {
             btnMagnet.setBackgroundResource(if (current == "magnet") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
             btnBoost.setBackgroundResource(if (current == "boost") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
             btnDouble.setBackgroundResource(if (current == "double") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
+            btnAntigravity.setBackgroundResource(if (current == "antigravity") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
+            btnDoubleJump.setBackgroundResource(if (current == "doublejump") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
+            btnEnergyGem.setBackgroundResource(if (current == "energygem") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
+            btnLegendary.setBackgroundResource(if (current == "legendary") R.drawable.bg_hero_equipped_neon else R.drawable.bg_cyan_border_panel)
         }
 
         fun equip(type: String) {
@@ -1662,8 +1675,21 @@ class MainActivity : AppCompatActivity() {
                 refreshUI()
                 return // unequipping
             }
-            if (currencyManager.getCoins() >= 100) {
-                currencyManager.spendCoins(100)
+            
+            val cost = when(type) {
+                "shield" -> 100
+                "boost" -> 150
+                "magnet" -> 200
+                "double" -> 250
+                "antigravity" -> 300
+                "doublejump" -> 350
+                "energygem" -> 400
+                "legendary" -> 1000
+                else -> 100
+            }
+            
+            if (currencyManager.getCoins() >= cost) {
+                currencyManager.spendCoins(cost)
                 saveManager.saveString("active_power_up", type)
                 audioManager.playPowerUp()
                 updateHomeUI()
@@ -1678,6 +1704,10 @@ class MainActivity : AppCompatActivity() {
         btnMagnet.setOnClickListener { equip("magnet") }
         btnBoost.setOnClickListener { equip("boost") }
         btnDouble.setOnClickListener { equip("double") }
+        btnAntigravity.setOnClickListener { equip("antigravity") }
+        btnDoubleJump.setOnClickListener { equip("doublejump") }
+        btnEnergyGem.setOnClickListener { equip("energygem") }
+        btnLegendary.setOnClickListener { equip("legendary") }
 
         refreshUI()
 
