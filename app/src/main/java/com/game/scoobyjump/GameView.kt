@@ -35,6 +35,10 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
     var onCoinsChange: ((Int) -> Unit)? = null
     var onSpiritChargeChange: ((Int) -> Unit)? = null
 
+    var lastPossessedUseScore = -1500
+    var isPossessedButtonReady = false
+    var onPossessedReadyChange: ((Boolean) -> Unit)? = null
+
     var missionManager: MissionManager? = null
     var currencyManager: CurrencyManager? = null
     var analyticsManager: AnalyticsManager? = null
@@ -129,6 +133,15 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
             player?.activateGhostSprint(300)
             cameraController?.triggerShake(15f, 20)
             audioManager?.playPowerUp()
+        }
+    }
+
+    fun spawnManualPossessed() {
+        if (isPossessedButtonReady) {
+            platformManager?.spawnManualPossessedPlatform()
+            lastPossessedUseScore = scoreManager.getTotalScore()
+            isPossessedButtonReady = false
+            onPossessedReadyChange?.invoke(false)
         }
     }
 
@@ -341,6 +354,19 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
         val currScore = scoreManager.getTotalScore()
         backgroundManager?.updateClimateBasedOnScore(currScore)
         
+        // Manual Possessed Platform Cooldown Check
+        if (currScore >= lastPossessedUseScore + 1500) {
+            if (!isPossessedButtonReady) {
+                isPossessedButtonReady = true
+                onPossessedReadyChange?.invoke(true)
+            }
+        } else {
+            if (isPossessedButtonReady) {
+                isPossessedButtonReady = false
+                onPossessedReadyChange?.invoke(false)
+            }
+        }
+
         val runTimeSeconds = ((System.currentTimeMillis() - runStartTime) / 1000).toInt()
         missionManager?.trackEvent(MissionEvent.SECOND_SURVIVED, runTimeSeconds)
         missionManager?.trackEvent(MissionEvent.METER_CLIMBED, scoreManager.getTotalScore())

@@ -58,6 +58,17 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        // Programmatic portrait lock
+        requestedOrientation = android.content.pm.ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        
+        // Modern immersive full-screen for Android 15 Edge-To-Edge
+        androidx.core.view.WindowCompat.setDecorFitsSystemWindows(window, false)
+        androidx.core.view.WindowInsetsControllerCompat(window, window.decorView).let { controller ->
+            controller.hide(androidx.core.view.WindowInsetsCompat.Type.systemBars())
+            controller.systemBarsBehavior = androidx.core.view.WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+
         setContentView(R.layout.activity_main)
 
         // Setup global exception handler
@@ -199,6 +210,17 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        gameView.onPossessedReadyChange = { isReady ->
+            runOnUiThread {
+                val btnSpawnPossessed = findViewById<Button>(R.id.btn_spawn_possessed)
+                if (isReady) {
+                    btnSpawnPossessed?.visibility = View.VISIBLE
+                } else {
+                    btnSpawnPossessed?.visibility = View.GONE
+                }
+            }
+        }
+
         gameView.onGameOver = { finalScore ->
             runOnUiThread {
                 val highScore = localHistoryManager.getHighestAltitude()
@@ -285,6 +307,12 @@ class MainActivity : AppCompatActivity() {
         btnTriggerOverdrive.setOnClickListener {
             gameView.triggerManualOverdrive()
             btnTriggerOverdrive.visibility = View.GONE
+        }
+
+        val btnSpawnPossessed = findViewById<Button>(R.id.btn_spawn_possessed)
+        btnSpawnPossessed?.setOnClickListener {
+            gameView.spawnManualPossessed()
+            btnSpawnPossessed.visibility = View.GONE
         }
 
         shopBtn.setOnClickListener {

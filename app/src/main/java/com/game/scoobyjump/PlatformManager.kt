@@ -193,11 +193,11 @@ class PlatformManager(private val screenWidth: Float, private val screenHeight: 
             }
         }
 
-        // Possessed Platform Spawning (~5% chance, but only if not golden/safe)
-        if (Random.nextFloat() < 0.05f) {
-            platform.isPossessed = true
-            platform.hasCoin = false // Clear coins for possessed platforms
-        }
+        // Possessed Platform Spawning (Disabled natively, now manual only via button)
+        // if (Random.nextFloat() < 0.05f) {
+        //     platform.isPossessed = true
+        //     platform.hasCoin = false // Clear coins for possessed platforms
+        // }
 
         platforms.add(platform)
         highestPlatformY = newY
@@ -271,5 +271,19 @@ class PlatformManager(private val screenWidth: Float, private val screenHeight: 
         if (y < highestPlatformY) {
             highestPlatformY = y
         }
+    }
+
+    fun spawnManualPossessedPlatform() {
+        // Calculate the center lane coordinate directly
+        val safeX = (screenWidth / 2f) - (platformWidth / 2f)
+        // Spawn exactly top platform + 200 distance
+        val newY = highestPlatformY - 200f
+        
+        val platform = StaticPlatform(safeX, newY, platformWidth, platformHeight, staticDrawable)
+        platform.isPossessed = true
+        platform.hasCoin = false
+        platforms.add(platform)
+        
+        highestPlatformY = newY
     }
 }

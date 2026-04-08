@@ -142,7 +142,7 @@ class Player(
         }
         
         if (isGhostSprintActive || isMultiplierActive) {
-            positionHistory.addFirst(android.graphics.PointF(x, y))
+            positionHistory.add(0, android.graphics.PointF(x, y))
             if (positionHistory.size > 5) {
                 positionHistory.removeLast()
             }

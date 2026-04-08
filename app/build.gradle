@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace 'com.game.scoobyjump'
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "com.game.scoobyjump"
         minSdk 24
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        targetSdk 35
+        versionCode 4
+        versionName "1.3"
     }
 
     buildTypes {
