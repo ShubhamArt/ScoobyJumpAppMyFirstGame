@@ -35,7 +35,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
     var onCoinsChange: ((Int) -> Unit)? = null
     var onSpiritChargeChange: ((Int) -> Unit)? = null
 
-    var lastPossessedUseScore = -1500
+    var lastPossessedUseScore = -3000
     var isPossessedButtonReady = false
     var onPossessedReadyChange: ((Boolean) -> Unit)? = null
 
@@ -355,7 +355,7 @@ class GameView(context: Context) : SurfaceView(context), SurfaceHolder.Callback 
         backgroundManager?.updateClimateBasedOnScore(currScore)
         
         // Manual Possessed Platform Cooldown Check
-        if (currScore >= lastPossessedUseScore + 1500) {
+        if (currScore >= lastPossessedUseScore + 3000) {
             if (!isPossessedButtonReady) {
                 isPossessedButtonReady = true
                 onPossessedReadyChange?.invoke(true)

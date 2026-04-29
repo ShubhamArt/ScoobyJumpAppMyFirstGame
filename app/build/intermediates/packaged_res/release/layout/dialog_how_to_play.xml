@@ -54,13 +54,22 @@
         android:layout_marginTop="4dp"
         android:layout_marginBottom="24dp" />
 
-    <!-- LIST OF RULES -->
-    <LinearLayout
-        android:id="@+id/rules_container"
+    <!-- LIST OF RULES SCROLLABLE -->
+    <ScrollView
+        android:id="@+id/rules_scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="320dp"
         android:layout_below="@id/how_to_play_subtitle"
-        android:orientation="vertical">
+        android:scrollbarThumbVertical="@drawable/scrollbar_thumb_purple"
+        android:scrollbars="vertical"
+        android:fadeScrollbars="false"
+        android:layout_marginBottom="8dp">
+
+        <LinearLayout
+            android:id="@+id/rules_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <!-- Rule 1: Tap to Jump -->
         <LinearLayout
@@ -392,19 +401,20 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hitting this button spawns a purple\nplatform that gives Ghost Sprint!\nRecharges every 1500m 🔋"
+                    android:text="Hitting this button spawns a purple\nplatform that gives Ghost Sprint!\nRecharges every 3000m 🔋"
                     android:textColor="#A0B0D0"
                     android:textSize="11sp"
                     android:layout_marginTop="2dp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+    </ScrollView>
 
     <!-- Bottom Goal Button -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="54dp"
-        android:layout_below="@id/rules_container"
+        android:layout_below="@id/rules_scroll"
         android:background="#2E1C4A"
         android:gravity="center"
         android:orientation="horizontal">

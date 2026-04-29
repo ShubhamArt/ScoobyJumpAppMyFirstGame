@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Glowing Electric Aura -->
+    <path android:pathData="M10,50 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="radial" android:centerX="50" android:centerY="50" android:gradientRadius="45">
+                <item android:color="#9900E5FF" android:offset="0.0" />
+                <item android:color="#4400E5FF" android:offset="0.5" />
+                <item android:color="#0000B0FF" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Starburst Inner Glow (Cyan) -->
+    <path android:fillColor="#5500E5FF" android:pathData="M50,50 L45,5 L55,5 Z" />
+    <path android:fillColor="#3300FFFF" android:pathData="M50,50 L75,10 L85,20 Z" />
+    <path android:fillColor="#5500E5FF" android:pathData="M50,50 L95,45 L95,55 Z" />
+    <path android:fillColor="#3300FFFF" android:pathData="M50,50 L85,80 L75,90 Z" />
+    <path android:fillColor="#5500E5FF" android:pathData="M50,50 L55,95 L45,95 Z" />
+    <path android:fillColor="#3300FFFF" android:pathData="M50,50 L15,80 L25,90 Z" />
+    <path android:fillColor="#5500E5FF" android:pathData="M50,50 L5,55 L5,45 Z" />
+    <path android:fillColor="#3300FFFF" android:pathData="M50,50 L15,20 L25,10 Z" />
+
+    <!-- 3D Potion / Crystal Base (Bottom Pod) -->
+    <path android:pathData="M30,70 L70,70 L60,95 L40,95 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="50" android:startY="70" android:endX="50" android:endY="95">
+                <item android:color="#023047" android:offset="0.0" />
+                <item android:color="#001219" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Base Highlight -->
+    <path android:fillColor="#0E6BA8" android:pathData="M35,70 L65,70 L58,85 L42,85 Z" />
+
+    <!-- Glowing Core Platform -->
+    <path android:pathData="M20,60 L80,60 L70,75 L30,75 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="50" android:startY="60" android:endX="50" android:endY="75">
+                <item android:color="#00B4D8" android:offset="0.0"/>
+                <item android:color="#0077B6" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+    <!-- Platform Trim (Neon) -->
+    <path android:fillColor="#00E5FF" android:pathData="M22,60 L78,60 L75,65 L25,65 Z" />
+
+    <!-- Main 3D Lightning Shape (The Power Up) -->
+    <path android:pathData="M60,15 L35,50 L50,50 L40,82 L70,42 L53,42 L65,15 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="50" android:startY="15" android:endX="50" android:endY="82">
+                <item android:color="#FFEA00" android:offset="0.0"/>
+                <item android:color="#FF8F00" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- 3D Edge Bevels for Lightning (Golden/Orange edges) -->
+    <path android:fillColor="#FFC107" android:pathData="M35,50 L40,50 L50,50 L45,55 L38,55 Z" />
+    <path android:fillColor="#FFCA28" android:pathData="M53,42 L58,42 L70,42 L65,47 L55,47 Z" />
+    
+    <!-- Lightning core bright super-highlight -->
+    <path android:fillColor="#FFFF8D" android:pathData="M56,22 L38,47 L46,47 L42,67 L60,45 L49,45 L58,22 Z"/>
+    <path android:fillColor="#FFFFFF" android:pathData="M54,26 L42,45 L47,45 L45,56 L55,46 L49,46 L55,26 Z" android:fillAlpha="0.7"/>
+    
+    <!-- Magical Particles (Sparkles) -->
+    <!-- Top Left -->
+    <path android:fillColor="#FFFFFF" android:pathData="M25,25 L27,18 L29,25 L36,27 L29,29 L27,36 L25,29 L18,27 Z" />
+    <!-- Bottom Right -->
+    <path android:fillColor="#FFFFFF" android:pathData="M80,75 L82,68 L84,75 L91,77 L84,79 L82,86 L80,79 L73,77 Z" />
+    <!-- Mid Right Sparkle -->
+    <path android:fillColor="#80FFFFFF" android:pathData="M85,35 L86,30 L87,35 L92,36 L87,37 L86,42 L85,37 L80,36 Z" />
+    <!-- Mid Left Sparkle -->
+    <path android:fillColor="#60FFFFFF" android:pathData="M15,65 L16,61 L17,65 L21,66 L17,67 L16,71 L15,67 L11,66 Z" />
+
+</vector>

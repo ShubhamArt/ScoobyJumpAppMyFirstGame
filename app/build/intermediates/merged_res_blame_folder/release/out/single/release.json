@@ -188,6 +188,10 @@
         "source": "com.game.scoobyjump.app-main-41:/drawable/bg_start_button_3d.xml"
     },
     {
+        "merged": "com.game.scoobyjump.app-merged_res-40:/drawable_scrollbar_thumb_purple.xml.flat",
+        "source": "com.game.scoobyjump.app-main-41:/drawable/scrollbar_thumb_purple.xml"
+    },
+    {
         "merged": "com.game.scoobyjump.app-merged_res-40:/mipmap-xxxhdpi_ic_launcher.webp.flat",
         "source": "com.game.scoobyjump.app-main-41:/mipmap-xxxhdpi/ic_launcher.webp"
     },

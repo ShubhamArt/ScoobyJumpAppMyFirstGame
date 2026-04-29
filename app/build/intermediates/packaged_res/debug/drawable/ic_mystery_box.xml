@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="200dp"
+    android:height="200dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Glowing Aura -->
+    <path android:pathData="M10,50 a40,40 0 1,0 80,0 a40,40 0 1,0 -80,0">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="radial" android:centerX="50" android:centerY="50" android:gradientRadius="45">
+                <item android:color="#77FFD500" android:offset="0.0" />
+                <item android:color="#22FFD500" android:offset="0.5" />
+                <item android:color="#00FFD500" android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Starburst Rays -->
+    <path android:fillColor="#55FFD500" android:pathData="M50,50 L45,5 L55,5 Z" />
+    <path android:fillColor="#33FFD500" android:pathData="M50,50 L75,10 L85,20 Z" />
+    <path android:fillColor="#55FFD500" android:pathData="M50,50 L95,45 L95,55 Z" />
+    <path android:fillColor="#33FFD500" android:pathData="M50,50 L85,80 L75,90 Z" />
+    <path android:fillColor="#55FFD500" android:pathData="M50,50 L55,95 L45,95 Z" />
+    <path android:fillColor="#33FFD500" android:pathData="M50,50 L15,80 L25,90 Z" />
+    <path android:fillColor="#55FFD500" android:pathData="M50,50 L5,55 L5,45 Z" />
+    <path android:fillColor="#33FFD500" android:pathData="M50,50 L15,20 L25,10 Z" />
+
+    <!-- Mystery Box Base Shadow -->
+    <path android:fillColor="#44000000" android:pathData="M15,90 L85,90 L75,98 L25,98 Z"/>
+
+    <!-- Purple Box Body -->
+    <path android:pathData="M20,40 L80,40 L75,85 L25,85 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="50" android:startY="40" android:endX="50" android:endY="85">
+                <item android:color="#8E24AA" android:offset="0.0"/>
+                <item android:color="#4A148C" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Box Body Highlights -->
+    <path android:fillColor="#A055FF" android:pathData="M30,40 L70,40 L65,75 L35,75 Z" />
+
+    <!-- Box Lid Top -->
+    <path android:pathData="M25,25 L75,25 L85,40 L15,40 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="50" android:startY="25" android:endX="50" android:endY="40">
+                <item android:color="#B388FF" android:offset="0.0"/>
+                <item android:color="#7C4DFF" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Box Lid Overhang -->
+    <path android:fillColor="#311B92" android:pathData="M12,40 L88,40 L88,45 L12,45 Z"/>
+
+    <!-- Left & Right Lid Highlights -->
+    <path android:fillColor="#651FFF" android:pathData="M16,40 L26,40 L26,43 L16,43 Z"/>
+    <path android:fillColor="#5E35B1" android:pathData="M74,40 L84,40 L84,43 L74,43 Z"/>
+
+    <!-- Front Lid Trim -->
+    <path android:pathData="M12,40 L88,40 L88,45 L12,45 Z">
+        <aapt:attr name="android:fillColor">
+            <gradient android:type="linear" android:startX="12" android:startY="40" android:endX="88" android:endY="40">
+                <item android:color="#512DA8" android:offset="0.0"/>
+                <item android:color="#9575CD" android:offset="0.5"/>
+                <item android:color="#512DA8" android:offset="1.0"/>
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Base Overhang -->
+    <path android:fillColor="#4A148C" android:pathData="M22,85 L78,85 L78,90 L22,90 Z"/>
+
+    <!-- GOLD CORNER TRIMS - Top Lid Left -->
+    <path android:fillColor="#FFC107" android:pathData="M12,40 L18,40 L18,45 L12,45 Z"/>
+    <!-- Top Lid Right -->
+    <path android:fillColor="#FFC107" android:pathData="M88,40 L82,40 L82,45 L88,45 Z"/>
+    <!-- Bottom Body Left -->
+    <path android:fillColor="#FFB300" android:pathData="M20,78 L26,78 L25,85 L22,85 Z"/>
+    <!-- Bottom Body Right -->
+    <path android:fillColor="#FFB300" android:pathData="M80,78 L74,78 L75,85 L78,85 Z"/>
+    
+    <!-- Lid Corners Bright Highlights -->
+    <path android:fillColor="#FFE082" android:pathData="M13,41 L17,41 L17,42 L13,42 Z"/>
+    <path android:fillColor="#FFE082" android:pathData="M83,41 L87,41 L87,42 L83,42 Z"/>
+
+    <!-- GOLD SIDE STRAPS -->
+    <!-- Left Strap -->
+    <path android:fillColor="#FFC107" android:pathData="M30,40 L35,40 L33,85 L28,85 Z"/>
+    <path android:fillColor="#FF8F00" android:pathData="M28,85 L33,85 L33,90 L28,90 Z"/>
+    <path android:fillColor="#FFCA28" android:pathData="M32,25 L37,25 L35,40 L30,40 Z"/>
+    <path android:fillColor="#FFb300" android:pathData="M30,40 L35,40 L35,45 L30,45 Z"/>
+    
+    <!-- Right Strap -->
+    <path android:fillColor="#FFC107" android:pathData="M70,40 L65,40 L67,85 L72,85 Z"/>
+    <path android:fillColor="#FF8F00" android:pathData="M72,85 L67,85 L67,90 L72,90 Z"/>
+    <path android:fillColor="#FFCA28" android:pathData="M68,25 L63,25 L65,40 L70,40 Z"/>
+    <path android:fillColor="#FFB300" android:pathData="M70,40 L65,40 L65,45 L70,45 Z"/>
+
+    <!-- QUESTION MARK (Golden Yellow) -->
+    <path android:fillColor="#FFD54F"
+          android:pathData="M48.5,80 C48.5,77 51.5,77 51.5,80 C51.5,83 48.5,83 48.5,80 Z M46,68 L46,66 C46,61 48,59 52,56 C54,54.5 56,53 56,50 C56,46 53,44 50,44 C46.5,44 44.5,45.5 44,48 L40,46.5 C41.5,42.5 45,40 50,40 C56,40 60,44 60,50 C60,55 58,57 54.5,59 C52.5,60 50.5,62 50.5,65 L50.5,68 L46,68 Z" />
+
+    <!-- Question Mark Inner Highlight -->
+    <path android:fillColor="#FFEE58"
+          android:pathData="M49,79.5 C49,78 51,78 51,79.5 C51,81 49,81 49,79.5 Z M47,67 L47,66 C47,62 49,60 52.5,57 C54.5,55.5 55,54 55,50 C55,47 52,45 50,45 C47,45 45.5,46 45,48 L42,46.5 C43,43.5 46,41 50,41 C55,41 59,44.5 59,50 C59,54 57,56 54,58 C52,59.5 51.5,61 51.5,65 L51.5,67 L47,67 Z" />
+
+</vector>
